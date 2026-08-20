@@ -1,0 +1,100 @@
+{
+  "N": 5278,
+  "n_white": 2103,
+  "n_afam": 3175,
+  "base_rate_white": 0.3908701854493581,
+  "base_rate_afam": 0.5231496062992126,
+  "m0": {
+    "accuracy": 0.6678666161424782,
+    "flagged_white": 0.25059438896814074,
+    "fpr_white": 0.1592505854800937,
+    "fnr_white": 0.6070559610705596,
+    "precision_white": 0.6129032258064516,
+    "flagged_African_American": 0.5288188976377953,
+    "fpr_African_American": 0.3527080581241744,
+    "fnr_African_American": 0.3106562311860325,
+    "precision_African_American": 0.6819535437760572,
+    "prop_parity": 2.1102583334578435,
+    "equal_odds": 1.7543051949383321,
+    "pred_rate_parity": 1.1126610451083039
+  },
+  "mu": {
+    "accuracy": 0.665403561955286,
+    "flagged_white": 0.26105563480741795,
+    "fpr_white": 0.1717408274785324,
+    "fnr_white": 0.5997566909975669,
+    "precision_white": 0.599271402550091,
+    "flagged_African_American": 0.5058267716535433,
+    "fpr_African_American": 0.3295904887714663,
+    "fnr_African_American": 0.33353401565322094,
+    "precision_African_American": 0.6892901618929016,
+    "prop_parity": 1.937620584312207,
+    "equal_odds": 1.6651520946293386,
+    "pred_rate_parity": 1.1502136744048723
+  },
+  "theta_scan": [
+    {
+      "theta": 0.0,
+      "accuracy": 0.665403561955286,
+      "prop_parity": 1.937620584312207,
+      "equal_odds": 1.6651520946293386,
+      "pred_rate_parity": 1.1502136744048723,
+      "flagged_white": 0.26105563480741795,
+      "flagged_AfAm": 0.5058267716535433
+    },
+    {
+      "theta": 0.05,
+      "accuracy": 0.6574460022735885,
+      "prop_parity": 1.1325168848915221,
+      "equal_odds": 1.1051137778220383,
+      "pred_rate_parity": 1.3060375564535298,
+      "flagged_white": 0.33428435568235854,
+      "flagged_AfAm": 0.3785826771653543
+    },
+    {
+      "theta": 0.1,
+      "accuracy": 0.6280788177339901,
+      "prop_parity": 0.6329550032461587,
+      "equal_odds": 0.6850688719917336,
+      "pred_rate_parity": 1.44862092911451,
+      "flagged_white": 0.4498335710889206,
+      "flagged_AfAm": 0.2847244094488189
+    },
+    {
+      "theta": 0.15,
+      "accuracy": 0.5941644562334217,
+      "prop_parity": 0.33667029190411973,
+      "equal_odds": 0.3995601095087664,
+      "pred_rate_parity": 1.5884395282294645,
+      "flagged_white": 0.6024726581074655,
+      "flagged_AfAm": 0.20283464566929135
+    },
+    {
+      "theta": 0.2,
+      "accuracy": 0.5683971201212581,
+      "prop_parity": 0.23169232736300385,
+      "equal_odds": 0.29866092820546125,
+      "pred_rate_parity": 1.7252820995764981,
+      "flagged_white": 0.7028055159296244,
+      "flagged_AfAm": 0.16283464566929134
+    },
+    {
+      "theta": 0.25,
+      "accuracy": 0.5492610837438424,
+      "prop_parity": 0.16209360786423438,
+      "equal_odds": 0.21672212124223725,
+      "pred_rate_parity": 1.7894959176182992,
+      "flagged_white": 0.7655729909652876,
+      "flagged_AfAm": 0.12409448818897638
+    },
+    {
+      "theta": 0.3,
+      "accuracy": 0.5035998484274347,
+      "prop_parity": 0.10047460505069002,
+      "equal_odds": 0.14877999210053033,
+      "pred_rate_parity": 1.9818992876007013,
+      "flagged_white": 0.8996671421778412,
+      "flagged_AfAm": 0.09039370078740157
+    }
+  ]
+}

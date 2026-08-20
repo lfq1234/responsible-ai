@@ -9,7 +9,8 @@ responsible-ai/
 ├── LICENSE
 ├── README.md            # 本文件：项目总览
 ├── TASK1/               # 第一次作业：负责任人工智能导论
-└── TASK2/               # 第二次作业：公平性原则
+├── TASK2/               # 第二次作业：公平性原则
+└── TASK3/               # 第三次作业：公平性实践
 ```
 
 ## 作业清单
@@ -43,6 +44,21 @@ responsible-ai/
 - 问题二：车险高风险标记系统的混淆矩阵计算（标记比例、PPV、TPR、FPR，检验 DP/分离性/充分性）
 - 问题三：五种模型设计（M0 / MU / MDP / MCDP / MC）与监管干预类型的配对
 - 问题四：致首席精算师的公平性方案备忘录（200–300 字）
+
+### TASK3 — 公平性实践
+
+| 文件 | 说明 |
+|------|------|
+| `作业3公平性实践.pdf` | 题目（含概述、说明与 A/B 两部分共六道问题） |
+| `林富强_作业3.docx` | 完成稿（可编辑 Word 版） |
+| `林富强_作业3.pdf` | 完成稿（PDF 版） |
+| `py/` | 完整 Python 实现（GLM + XGBoost、DI remover、roc_pivot、全部图表与结果表，可复现） |
+| `pg15training_processed.csv` | 法国车险数据（100,000 份保单） |
+
+**任务要点**（第三章"公平性实践"案例研究的拓展）：
+- A 部分——车险定价：问题一 MDP 的 lambda 扫描（lambda ∈ {0, 0.25, 0.5, 0.75, 1} 的 DIR/RMSE）；问题二 仅对 Density 去偏；问题三 为何仅靠无意识不够（代理性歧视）；问题四 部署建议（推荐 MCDP）
+- B 部分——COMPAS 分类：问题五 roc_pivot 的 theta 扩展扫描（新增 theta = 0.25 / 0.30）；问题六 不存在满足所有准则的 theta（基准率差异下的不可能性）
+- 实现：Python 3.12（statsmodels / xgboost），DI remover 与 roc_pivot 严格对照 fairmodels/fairness R 包源码复刻，结果与讲义完全一致
 
 ## 说明
 

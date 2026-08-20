@@ -1,0 +1,11 @@
+# Python 中间产物
+*.pkl
+*.pyc
+__pycache__/
+
+# R 残留（作业改用 Python 实现）
+R/
+
+# 系统文件
+.DS_Store
+Thumbs.db

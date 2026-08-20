@@ -1,0 +1,5 @@
+Method,Gender,M0: Full Model,MC: Controlling for the Protected Variable,MCDP: Conditional Demographic Parity,MDP: Demographic Parity,MU: Unawareness Model
+GLM,Female,95.66,124.18,121.0,117.33,124.05
+GLM,Male,130.47,113.95,115.79,117.9,114.03
+XGBoost,Female,94.61,123.74,122.23,116.02,123.43
+XGBoost,Male,131.0,114.21,115.07,118.66,114.38
