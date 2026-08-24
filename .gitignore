@@ -3,6 +3,10 @@
 *.pyc
 __pycache__/
 
+# 可复现的中间产物（不入库）
+*.npz
+*.parquet
+
 # R 残留（作业改用 Python 实现）
 R/
 

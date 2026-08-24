@@ -10,6 +10,7 @@
 | TASK2 | 第二章 | 公平性框架：界定公平性、设计公平模型 |
 | TASK3 | 第三章 | 公平性实践：车险定价（GLM/XGBoost）与 COMPAS 分类案例 |
 | TASK4 | 第四章 | 可解释性原则：PFI、PDP/ICE/ALE、SHAP 与 LIME |
+| TASK5 | 第五章 | 可解释性实践：PDP/ALE、TreeSHAP 全局与局部解释、PFI |
 
 ## 作业进度总览
 
@@ -19,6 +20,7 @@
 | TASK2 公平性原则 | 自动化招聘 / 车险高风险标记 | ✅ 已完成 |
 | TASK3 公平性实践 | 法国车险定价 + COMPAS | ✅ 已完成 |
 | TASK4 可解释性原则 | 软件缺陷预测系统 | ✅ 已完成 |
+| TASK5 可解释性实践 | 法国车险定价（pg15training） | ✅ 已完成 |
 
 ## 目录结构
 
@@ -29,7 +31,11 @@ responsible-ai/
 ├── TASK1/               # 第一次作业：负责任人工智能导论
 ├── TASK2/               # 第二次作业：公平性原则
 ├── TASK3/               # 第三次作业：公平性实践
-└── TASK4/               # 第四次作业：可解释性原则
+├── TASK4/               # 第四次作业：可解释性原则
+└── TASK5/               # 第五次作业：可解释性实践
+    ├── data/            # 原始 RData 与第5章 CSV
+    ├── py/              # 复现脚本（9 个）
+    └── output/          # 图表与结果表（PDF/docx 已内嵌关键图）
 ```
 
 ## 作业清单
@@ -95,9 +101,34 @@ responsible-ai/
 - 问题四：PDP 外推与取平均两项弱点如何被对抗性利用（Xin 2025）；子群体效应差异下 PDP vs ICE
 - 问题五：解释权/监管举证场景推荐 SHAP（TreeSHAP）；改用 LIME 的具体风险
 
+### TASK5 — 可解释性实践
+
+| 文件 | 说明 |
+|------|------|
+| `作业5可解释性实践.pdf` | 题目（含概述、说明与三道问题） |
+| `林富强_作业5.docx` | 完成稿（可编辑 Word 版） |
+| `林富强_作业5.pdf` | 完成稿（PDF 版，9 页） |
+| `data/pg15training.rda` | CASdatasets 包原始 RData（从 GitHub dutangc/CASdatasets 下载） |
+| `data/pg15training_ch5.csv` | 按第5章讲座流程处理后的 100,000 行数据 |
+| `data/export_ch5.R` | R 脚本：导出第5章 CSV |
+| `py/01_prepare_data.py` | 数据准备：移除 21 条重复 + 独热编码 + 70/30 划分 |
+| `py/02_fit_freq_model.py` | 频率模型（带 offset=log Exposure，RMSE 0.3939 与讲座 0.3929 高度一致） |
+| `py/02b_fit_freq_model_nolink.py` | 年化频率模型（无 offset，供 SHAP 使用，加法性精确） |
+| `py/helpers.py` | 复现讲座辅助函数：compute_pdp / compute_ale / 置换重要性 / group_feature_name |
+| `py/04_q1_pdp_ale.py` | 问题 1：Density 的 PDP 与 ALE |
+| `py/05_q2_shap.py` | 问题 2：全局 SHAP 重要性 + 单保单瀑布图 + 客户解释 |
+| `py/06_q3_perm_imp.py` | 问题 3 实证：置换重要性（5 次重复，结果与讲座排序一致） |
+| `py/build_作业5.py` | 报告生成脚本（生成 docx 并通过 LibreOffice 转 PDF） |
+
+**任务要点**（第五章"可解释性实践"案例研究的 Python 动手作业，遵循「全局重要性 → 主效应 → 局部解释」工作流程）：
+- 问题 1：Density 的 PDP 与 ALE 高度吻合（PDP 0.09→0.30，ALE 居中后形状一致），说明 Density 与其他变量相关性较弱，PDP 是合理的主效应概括
+- 问题 2：分组 SHAP 重要性排序：Bonus 0.52 > Group1 0.40 > Age 0.33 > Occupation 0.28 > Density 0.26；除 Age/Bonus 外 Group1 与 Occupation 最重要；所选高风险保单（Age=28、Bonus=10、Density=296.4，预测年化频率 0.38，接近测试集第 90 分位 0.3772）主要贡献来自 Density +0.51、Age +0.25、Bonus +0.15；另以客户可懂的语言解释该保单为何被评估为高风险
+- 问题 3：PFI 排序与讲座值精确一致（Bonus 0.103、Age 0.056、Density 0.032…）；批判性指出每种方法的优势与局限，并主张监管沟通应 PFI/全局 SHAP（整体证据）+ PDP/ALE（形状证据）+ SHAP 局部归因（个案证据）+ ALE 稳健性检查四重协同
+- 实现：CASdatasets RData 通过 R 4.6.1 读取并导出为 CSV；SHAP 使用无 offset 年化频率模型（label=ClaimNb/Exposure）以避免 TreeExplainer 对 base_margin 的兼容性问题
+
 ## 说明
 
 - 完成稿署名：**林富强**，专业：软件工程
 - 每份作业均提供 PDF 与 docx 双格式，docx 用于修改，PDF 用于提交
-- TASK2 与 TASK4 附 `build_作业N.py` 生成脚本；TASK3 附 `py/` 完整可复现的 Python 实现与数据
-- TASK1 与 TASK4 统一采用**软件缺陷预测系统**作为应用场景，保持课程叙事连贯
+- TASK2 与 TASK4 附 `build_作业N.py` 生成脚本；TASK3 附 `py/` 完整可复现的 Python 实现与数据；TASK5 附 `py/` 复现脚本与 `data/` 原始数据
+- TASK1 与 TASK4 统一采用**软件缺陷预测系统**作为应用场景，TASK3 与 TASK5 统一采用**法国车险定价**（pg15training）作为应用场景，保持课程叙事连贯
