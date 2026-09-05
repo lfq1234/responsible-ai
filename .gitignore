@@ -13,3 +13,7 @@ R/
 # 系统文件
 .DS_Store
 Thumbs.db
+
+# TASK7 数据：与 TASK5/data/pg15training_ch5.csv 完全相同（12MB），不入库
+TASK7/data/pg15training_raw.csv
+TASK7/output/syn_df.csv

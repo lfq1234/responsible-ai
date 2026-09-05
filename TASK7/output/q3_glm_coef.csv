@@ -1,0 +1,6 @@
+Coefficient,Real data,Synthetic data,Difference
+Age,-0.0353,-0.0366,-0.0013
+GenderMale,0.3325,0.2606,-0.0719
+log1p(Density),0.4682,0.4657,-0.0025
+log1p(Value),0.1049,0.1156,0.0107
+Bonus,0.011,0.011,0.0
